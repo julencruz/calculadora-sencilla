@@ -10,10 +10,12 @@ def DEL():
     pantalla.config(text=operaciones)
     resultado.config(text="")
 
+
+
 def unir(operaciones, operacion):
     aux = []
     for elemento in operaciones:
-        if elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
+        if elemento =="-" or elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
             aux.append(elemento)
         else:
             if elemento == "+" or elemento == "-" or elemento == "÷" or elemento == "×":
@@ -78,8 +80,12 @@ def operar(operaciones):
     operacion=[]
     unir(operaciones, operacion)
     error = False
-    while operacion.count("÷") > 0 or operacion.count("×") > 0:
-        PEMDAS(operacion)
+    print(operacion)
+    if (operacion[-1] == "+" or operacion[-1] == "-" or operacion[-1] == "×" or operacion[-1] == "÷"):
+        resultado.config(text="SYNTAX\nERROR")
+    else:
+        while operacion.count("÷") > 0 or operacion.count("×") > 0:
+            PEMDAS(operacion)
 
     resultante = 0
 
