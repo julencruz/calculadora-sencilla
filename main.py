@@ -52,6 +52,7 @@ def operar(operaciones):
                 IZQUIERDA A DERECHA
                 1 - Multiplicar/Dividir
                 2 - Sumar/Restar
+                Puede que con un lista.count() o un lista.index()
                 '''
                 if operacion[elemento] == "+":
                     resultante += operacion[elemento+1]
