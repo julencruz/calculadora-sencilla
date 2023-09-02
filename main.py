@@ -1,4 +1,13 @@
 import tkinter as tk
+from tkinter import filedialog as fd
+
+def ANS(operaciones, ultimo):
+    cadena = list(str(ultimo[-1]))
+    for elemento in cadena:
+        operaciones.append(elemento)
+    pantalla.config(text=operaciones)
+    resultado.config(text="")
+
 def AC():
     operaciones.clear()
     pantalla.config(text=operaciones)
@@ -10,12 +19,10 @@ def DEL():
     pantalla.config(text=operaciones)
     resultado.config(text="")
 
-
-
 def unir(operaciones, operacion):
     aux = []
     for elemento in operaciones:
-        if (elemento == "-" and len(aux) == 0) or elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
+        if (elemento == "-" and len(aux) == 0) or (elemento == "+" and len(aux) == 0) or elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
             aux.append(elemento)
         else:
             if elemento == "+" or elemento == "-" or elemento == "÷" or elemento == "×":
@@ -26,6 +33,9 @@ def unir(operaciones, operacion):
                         operacion.append(float("".join(map(str, aux))))
                         aux.clear()
                         operacion.append(elemento)
+                else:
+                    operacion.append(elemento)
+                    resultado.config(text="SYNTAX\nERROR")
 
 
     if len(aux) > 0:
@@ -76,7 +86,7 @@ def PEMDAS(operacion):
 
 
 
-def operar(operaciones):
+def operar(operaciones, ultimo):
     operacion=[]
     unir(operaciones, operacion)
     error = False
@@ -114,26 +124,28 @@ def operar(operaciones):
                                 else:
                                     resultante /= operacion[elemento+1]
         if not(error):
+            ultimo.append(resultante)
+            print(resultante)
             resultado.config(text=str(round(resultante,4)))
 
 def escribir(tecla):
     operaciones.append(tecla)
     pantalla.config(text=operaciones)
 
-operaciones = []
+''' Calculator UI '''
 
+operaciones = []
 ventana = tk.Tk()
+ultimo = []
 ventana.config(height=305, width=340, bg="#cfcfcf")
 ventana.title("Calculadora")
-
 pantalla = tk.Label(font="Arial 15", anchor="w")
 pantalla.place(width=220, height=75, x=5, y=5)
 resultado = tk.Label(font="Arial 15", anchor="w")
 resultado.place(height=75, width=105, x=230, y=5)
-
-botonArchivo = tk.Button(text="ARC", font="Arial 15")
+botonANS = tk.Button(text="ANS", font="Arial 15", command=lambda: ANS(operaciones, ultimo))
 botonDecimal = tk.Button(text=",", font="Arial 15", command=lambda: escribir("."))
-botonIgual = tk.Button(text="=", font="Arial 15", command=lambda: operar(operaciones))
+botonIgual = tk.Button(text="=", font="Arial 15", command=lambda: operar(operaciones, ultimo))
 boton0 = tk.Button(text="0", font = "Arial 15", command=lambda: escribir("0"))
 boton1 = tk.Button(text="1", font = "Arial 15", command=lambda: escribir("1"))
 boton2 = tk.Button(text="2", font = "Arial 15", command=lambda: escribir("2"))
@@ -150,7 +162,6 @@ botonMultiplica = tk.Button(text="×", font="Arial 15", command=lambda: escribir
 botonDivide = tk.Button(text="÷", font="Arial 15", command=lambda: escribir("÷"))
 botonDEL = tk.Button(text="DEL", font="Arial 15", command=DEL)
 botonAC = tk.Button(text="AC", font="Arial 15", command=AC)
-
 boton7.place(width=70, height=50, x=5, y=85)
 boton8.place(width=70, height=50, x=80, y=85)
 boton9.place(width=70, height=50, x=155, y=85)
@@ -162,7 +173,7 @@ boton2.place(width=70, height=50, x=80, y=195)
 boton3.place(width=70, height=50, x=155, y=195)
 boton0.place(width=70, height=50, x=5, y=250)
 botonDecimal.place(width=70, height=50, x=80, y=250)
-botonArchivo.place(width=70, height=50, x=155, y=250)
+botonANS.place(width=70, height=50, x=155, y=250)
 botonIgual.place(width=105, height=50, x=230, y=250)
 botonSuma.place(width=50, height=50, x=230, y=140)
 botonResta.place(width=50, height=50, x=230, y=195)
@@ -170,8 +181,6 @@ botonMultiplica.place(width=50, height=50, x=285, y=140)
 botonDivide.place(width=50, height=50, x=285, y=195)
 botonDEL.place(width=50, height=50, x=230, y=85)
 botonAC.place(width=50, height=50, x=285, y=85)
-
-
 ventana.mainloop()
 
 
