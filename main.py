@@ -71,7 +71,7 @@ def operar(operaciones):
                                 else:
                                     resultante /= operacion[elemento+1]
         if not(error):
-            resultado.config(text=str(round(float(resultante),4)))
+            resultado.config(text=str(round(resultante,4)))
 
 def escribir(tecla):
     operaciones.append(tecla)
