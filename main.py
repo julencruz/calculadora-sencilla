@@ -15,7 +15,7 @@ def DEL():
 def unir(operaciones, operacion):
     aux = []
     for elemento in operaciones:
-        if elemento =="-" or elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
+        if (elemento == "-" and len(aux) == 0) or elemento == "." or elemento == "0" or elemento == "1" or elemento == "2" or elemento == "3" or elemento == "4" or elemento == "5" or elemento == "6" or elemento == "7" or elemento == "8" or elemento == "9":
             aux.append(elemento)
         else:
             if elemento == "+" or elemento == "-" or elemento == "÷" or elemento == "×":
