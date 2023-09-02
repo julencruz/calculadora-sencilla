@@ -49,6 +49,9 @@ def operar(operaciones):
             else:
                 '''
                 PEMDAS TO-DO
+                IZQUIERDA A DERECHA
+                1 - Multiplicar/Dividir
+                2 - Sumar/Restar
                 '''
                 if operacion[elemento] == "+":
                     resultante += operacion[elemento+1]
