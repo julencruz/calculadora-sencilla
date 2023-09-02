@@ -54,6 +54,7 @@ def operar(operaciones):
                 2 - Sumar/Restar
                 Puede que con un lista.count() o un lista.index()
                 '''
+                print(operacion[elemento])
                 if operacion[elemento] == "+":
                     resultante += operacion[elemento+1]
                 else:
