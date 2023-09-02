@@ -135,11 +135,11 @@ def escribir(tecla):
 operaciones = []
 ventana = tk.Tk()
 ultimo = []
-ventana.config(height=305, width=340, bg="#cfcfcf")
+ventana.config(height=305, width=340, bg="#cfcfcf", cursor="hand2")
 ventana.title("Calculadora")
-pantalla = tk.Label(font="Arial 15", anchor="w")
+pantalla = tk.Label(font="Arial 15", anchor="w", cursor="arrow", borderwidth="5")
 pantalla.place(width=220, height=75, x=5, y=5)
-resultado = tk.Label(font="Arial 15", anchor="w")
+resultado = tk.Label(font="Arial 15", anchor="w", cursor="arrow", borderwidth="5")
 resultado.place(height=75, width=105, x=230, y=5)
 botonANS = tk.Button(text="ANS", font="Arial 15", command=lambda: ANS(operaciones, ultimo))
 botonDecimal = tk.Button(text=",", font="Arial 15", command=lambda: escribir("."))
