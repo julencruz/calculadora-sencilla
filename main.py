@@ -1,6 +1,4 @@
 import tkinter as tk
-from tkinter import filedialog as fd
-
 def ANS(operaciones, ultimo):
     cadena = list(str(ultimo[-1]))
     for elemento in cadena:
