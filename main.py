@@ -47,6 +47,9 @@ def operar(operaciones):
                 resultante = float(operacion[elemento])
                 primero = False
             else:
+                '''
+                PEMDAS TO-DO
+                '''
                 if operacion[elemento] == "+":
                     resultante += operacion[elemento+1]
                 else:
@@ -64,11 +67,6 @@ def operar(operaciones):
                                     resultante /= operacion[elemento+1]
         if not(error):
             resultado.config(text=str(round(float(resultante),4)))
-
-
-
-
-
 
 def escribir(tecla):
     operaciones.append(tecla)
