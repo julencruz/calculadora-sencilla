@@ -32,12 +32,55 @@ def unir(operaciones, operacion):
         else:
             operacion.append(float("".join(map(str, aux))))
 
+def PEMDAS(operacion):
+    result = 0
+    aux = []
+    if operacion.count("×") > 0 or operacion.count("÷"):
+        try:
+            pemdas = operacion.index("×")
+            result = operacion[pemdas-1] * operacion[pemdas+1]
+            elemento = 0
+            while elemento < len(operacion):
+                if elemento == pemdas-1:
+                    aux.append(result)
+                    elemento += 3
+                else:
+                    aux.append(operacion[elemento])
+                    elemento += 1
+            operacion.clear()
+            for elemento in aux:
+                operacion.append(elemento)
+            print(operacion)
+
+
+        except:
+            pemdas = operacion.index("÷")
+            result = operacion[pemdas - 1] / operacion[pemdas + 1]
+            elemento = 0
+            while elemento < len(operacion):
+                if elemento == pemdas - 1:
+                    aux.append(result)
+                    elemento += 3
+                else:
+                    aux.append(operacion[elemento])
+                    elemento += 1
+            operacion.clear()
+            for elemento in aux:
+                operacion.append(elemento)
+            print(operacion)
+
+
+
+
 def operar(operaciones):
     operacion=[]
     unir(operaciones, operacion)
+    while operacion.count("÷") > 0 or operacion.count("×") > 0:
+        PEMDAS(operacion)
+
     resultante = 0
     error = False
-    print(operacion)
+
     if operacion[0] == "×" or operacion[0] == "÷" or operacion[-1] == "+" or operacion[-1] == "-" or operacion[-1] == "×" or operacion[-1] == "÷":
         resultado.config(text="SYNTAX\nERROR")
     else:
@@ -47,14 +90,6 @@ def operar(operaciones):
                 resultante = float(operacion[elemento])
                 primero = False
             else:
-                '''
-                PEMDAS TO-DO
-                IZQUIERDA A DERECHA
-                1 - Multiplicar/Dividir
-                2 - Sumar/Restar
-                Puede que con un lista.count() o un lista.index()
-                '''
-                print(operacion[elemento])
                 if operacion[elemento] == "+":
                     resultante += operacion[elemento+1]
                 else:
