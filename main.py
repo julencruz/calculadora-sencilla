@@ -55,6 +55,8 @@ def PEMDAS(operacion):
 
         except:
             pemdas = operacion.index("÷")
+            if operacion[pemdas+1] == 0:
+                resultado.config(text="MATH\nERROR")
             result = operacion[pemdas - 1] / operacion[pemdas + 1]
             elemento = 0
             while elemento < len(operacion):
@@ -75,11 +77,11 @@ def PEMDAS(operacion):
 def operar(operaciones):
     operacion=[]
     unir(operaciones, operacion)
+    error = False
     while operacion.count("÷") > 0 or operacion.count("×") > 0:
         PEMDAS(operacion)
 
     resultante = 0
-    error = False
 
     if operacion[0] == "×" or operacion[0] == "÷" or operacion[-1] == "+" or operacion[-1] == "-" or operacion[-1] == "×" or operacion[-1] == "÷":
         resultado.config(text="SYNTAX\nERROR")
