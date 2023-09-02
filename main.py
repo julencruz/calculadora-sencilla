@@ -1,6 +1,5 @@
 import tkinter as tk
 def ANS(operaciones, ultimo):
-    operaciones.clear()
     cadena = list(str(ultimo[-1]))
     for elemento in cadena:
         operaciones.append(elemento)
